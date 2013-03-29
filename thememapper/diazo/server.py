@@ -7,6 +7,7 @@ from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 from tornado import autoreload
 import os
+import thememapper
 
 url = 'http://ping-win.nl'
 rules_file = '/home/c4rocket/Documents/Projects/diazo-test/themes/dangled/rules.xml'
@@ -36,13 +37,10 @@ def start_diazo_server(port):
     ioloop.start()
     
 def main():
-    print '========================='
-    print '==== STARTING SERVER ===='
-    print '========================='
-    start_diazo_server(8080)
-    print '========================='
-    print '==== SERVER  RUNNING ===='
-    print '========================='
+    print '========================'
+    print '==== SERVER STARTED ===='
+    print '========================'
+    start_diazo_server(5000)
 
 if __name__ == '__main__':
     main()
