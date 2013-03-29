@@ -7,19 +7,32 @@ from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 from tornado import autoreload
 import os
+import socket
 
 url = 'http://ping-win.nl'
 rules_file = '/home/c4rocket/Documents/Projects/diazo-test/themes/dangled/rules.xml'
 SERVER_NAME = '129.125.101.162'
+HTTP_HOST = 'ping-win.nl'
 
 class MyWSGIProxyApp(WSGIProxyApp):
     def setup_forwarded_environ(self, environ):
         super(MyWSGIProxyApp, self).setup_forwarded_environ(environ)
         environ['SERVER_NAME'] = SERVER_NAME
-        environ['HTTP_HOST'] = 'ping-win.nl'
+        environ['HTTP_HOST'] = HTTP_HOST
 
     def __call__(self, environ, start_response):
         return super(MyWSGIProxyApp, self).__call__(environ, start_response)
+    
+def init(mapper):
+    global url
+    url = 'http://' + mapper.themed_url
+    rules_file = mapper.rules_path
+    SERVER_NAME = socket.gethostbyname(url)
+    if mapper.themed_url.startswith('http://'):
+        HTTP_HOST = mapper.themed_url[7:]
+    else:
+        HTTP_HOST = mapper.themed_url
+    
 
 def start_diazo_server(port):
     app = Flask(__name__)
