@@ -25,14 +25,15 @@ class MyWSGIProxyApp(WSGIProxyApp):
 def init(mapper):
     global url
     global rules_file
-    url = 'http://' + mapper.themed_url
+    url = mapper.content_url
+    print url
     rules_file = mapper.rules_path
     print rules_file
     #SERVER_NAME = socket.gethostbyname(url)
     if mapper.themed_url.startswith('http://'):
-        HTTP_HOST = mapper.themed_url[7:]
+        HTTP_HOST = mapper.content_url[7:]
     else:
-        HTTP_HOST = mapper.themed_url
+        HTTP_HOST = mapper.content_url
     print HTTP_HOST
     
 
