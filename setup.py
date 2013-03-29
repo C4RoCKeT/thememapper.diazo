@@ -20,5 +20,10 @@ setup(
         "Topic :: Internet",
       ],
     install_requires=['setuptools','Flask','requests','urlparse'],
+    entry_points = {
+    'console_scripts': [
+                        'thememapper_diazo = thememapper.diazo.server:main'
+                       ]
+    },
     zip_safe=False
 )

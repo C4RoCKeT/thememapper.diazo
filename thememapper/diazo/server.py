@@ -34,6 +34,9 @@ def start_diazo_server(port):
     #autoreload.watch(os.path.join(path, item))
     autoreload.start(ioloop)
     ioloop.start()
+    
+def main():
+    start_diazo_server(8080)
 
 if __name__ == '__main__':
-    start_diazo_server(8080)
+    main()
