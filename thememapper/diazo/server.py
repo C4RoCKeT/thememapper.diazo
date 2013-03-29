@@ -20,21 +20,19 @@ class MyWSGIProxyApp(WSGIProxyApp):
         environ['HTTP_HOST'] = HTTP_HOST
 
     def __call__(self, environ, start_response):
+        environ['REMOTE_ADDR'] = '127.0.0.1'
         return super(MyWSGIProxyApp, self).__call__(environ, start_response)
     
 def init(mapper):
     global url
     global rules_file
     url = mapper.content_url
-    print url
     rules_file = mapper.rules_path
-    print rules_file
-    #SERVER_NAME = socket.gethostbyname(url)
+    SERVER_NAME = socket.gethostbyname(url)
     if mapper.themed_url.startswith('http://'):
         HTTP_HOST = mapper.content_url[7:]
     else:
         HTTP_HOST = mapper.content_url
-    print HTTP_HOST
     
 
 def start_diazo_server(port):
