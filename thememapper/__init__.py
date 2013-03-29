@@ -1,2 +1,2 @@
 import pkg_resources
-2pkg_resources.declare_namespace(__name__)
+pkg_resources.declare_namespace(__name__)
