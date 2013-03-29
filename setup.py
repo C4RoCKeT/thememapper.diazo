@@ -19,7 +19,7 @@ setup(
         "Intended Audience :: Developers",
         "Topic :: Internet",
       ],
-    install_requires=['setuptools','Flask','requests','urlparse'],
+    install_requires=['setuptools','Flask','tornado','diazo'],
     entry_points = {
     'console_scripts': [
                         'thememapper_diazo = thememapper.diazo.server:main'
