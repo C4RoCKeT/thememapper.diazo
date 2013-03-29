@@ -7,7 +7,6 @@ from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 from tornado import autoreload
 import os
-import socket
 
 url = 'http://ping-win.nl'
 rules_file = '/home/c4rocket/Documents/Projects/diazo-test/themes/dangled/rules.xml'
@@ -25,13 +24,16 @@ class MyWSGIProxyApp(WSGIProxyApp):
     
 def init(mapper):
     global url
+    global rules_file
     url = 'http://' + mapper.themed_url
     rules_file = mapper.rules_path
+    print rules_file
     #SERVER_NAME = socket.gethostbyname(url)
     if mapper.themed_url.startswith('http://'):
         HTTP_HOST = mapper.themed_url[7:]
     else:
         HTTP_HOST = mapper.themed_url
+    print HTTP_HOST
     
 
 def start_diazo_server(port):
