@@ -7,7 +7,6 @@ from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 from tornado import autoreload
 import os
-import thememapper
 
 url = 'http://ping-win.nl'
 rules_file = '/home/c4rocket/Documents/Projects/diazo-test/themes/dangled/rules.xml'
