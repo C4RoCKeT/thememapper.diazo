@@ -36,7 +36,13 @@ def start_diazo_server(port):
     ioloop.start()
     
 def main():
+    print '========================='
+    print '==== STARTING SERVER ===='
+    print '========================='
     start_diazo_server(8080)
+    print '========================='
+    print '==== SERVER  RUNNING ===='
+    print '========================='
 
 if __name__ == '__main__':
     main()
