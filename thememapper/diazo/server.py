@@ -35,6 +35,15 @@ def start_diazo_server(port):
     autoreload.start(ioloop)
     ioloop.start()
     
+def get_diazo_server():
+    app = Flask(__name__)
+    app.wsgi_app = DiazoMiddleware(MyWSGIProxyApp(url),None,rules_file,prefix='/static',read_network=True)
+    handlers = [
+        (r'/static/(.*)', StaticFileHandler, {'path': os.path.dirname(rules_file)}),
+        (r'/(.*)', FallbackHandler, {'fallback': WSGIContainer(app)})
+        ]
+    return Application(handlers)
+    
 def main():
     print '========================'
     print '==== SERVER STARTED ===='
