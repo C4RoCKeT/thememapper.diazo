@@ -19,7 +19,7 @@ setup(
         "Intended Audience :: Developers",
         "Topic :: Internet",
       ],
-    install_requires=['setuptools','Flask','tornado','diazo','diazo[wsgi]','wsgiproxy'],
+    install_requires=['setuptools','Flask','tornado','diazo[wsgi]','wsgiproxy'],
     entry_points = {
     'console_scripts': [
                         'thememapper_diazo = thememapper.diazo.server:main'
