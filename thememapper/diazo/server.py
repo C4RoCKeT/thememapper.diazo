@@ -47,7 +47,7 @@ def get_application(mapper):
         app = Flask(__name__)
         app.wsgi_app = DiazoMiddleware(MyWSGIProxyApp(mapper.content_url),None,mapper.rules_path,prefix='/static',read_network=True,update_content_length=True,debug=True)
         handlers = [
-            (r'/static/(.*)', StaticFileHandler, {'path': os.path.dirname(mapper.rules_path)}),
+            (r'/static/(.*)', StaticFileHandler, {'path': mapper.static_path}),
             (r'/(.*)', FallbackHandler, {'fallback': WSGIContainer(app)})
             ]
         return Application(handlers)
@@ -73,6 +73,7 @@ def main():
     p.add_option('--port', '-p', default='5000',help='port diazo must run at')
     p.add_option('--content', '-c', default='http://localhost',help='format: http://<domain>')
     p.add_option('--rules', '-r', default='',help='Path of rules.xml')
+    p.add_option('--static', '-s', default='',help='Path to static content')
     options = p.parse_args()[0]
     """
     "mapper" Is an object normally filled by the Mapper class from thememapper.core
@@ -82,6 +83,7 @@ def main():
     mapper['diazo_port'] = options.port
     mapper['content_url'] = options.content
     mapper['rules_path']= options.rules
+    mapper['static_path']= options.static
     start_diazo_server(Mapper(**mapper))
 
 if __name__ == '__main__':
