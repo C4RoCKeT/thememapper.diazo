@@ -7,7 +7,6 @@ from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 from tornado import autoreload
 import optparse
-import os
 import socket
 from urlparse import urlparse
 
