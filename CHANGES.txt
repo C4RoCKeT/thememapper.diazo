@@ -1,1 +1,2 @@
-v0.1, 2013-03-28 -- First version
+v0.1.0, 2013-03-28 -- First version
+v0.2.0, 2013-03-28 -- Removed setuptools from the requirements

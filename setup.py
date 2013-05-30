@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='thememapper.diazo',
-    version='0.1',
+    version='0.2.0',
     description='thememapper module containing diazo server for development',
     long_description=open('README.rst').read(),
     author='Brandon Tilstra',
@@ -19,7 +19,7 @@ setup(
         "Intended Audience :: Developers",
         "Topic :: Internet",
       ],
-    install_requires=['setuptools','Flask','tornado','diazo[wsgi]','wsgiproxy'],
+    install_requires=['Flask','tornado','diazo[wsgi]','wsgiproxy'],
     entry_points = {
     'console_scripts': [
                         'thememapper_diazo = thememapper.diazo.server:main'
